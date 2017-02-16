@@ -83,12 +83,12 @@ end
 RSpec.shared_context "Ars::Medium API Stubs" do |*media|
   media = [*media]
 
-  rack_channeler = Ars::Medium::TestMethods::RackChanneler.new
+  Ars::RACK_CHANNELER ||= Ars::Medium::TestMethods::RackChanneler.new
 
-  let(:rack_handle) { rack_channeler }
+  let(:rack_handle) { Ars::RACK_CHANNELER }
 
   media.each do |medium|
-    rack_channeler.focus medium
+    Ars::RACK_CHANNELER.focus medium
   end
 
   Ars::Medium.configure do |config|
@@ -96,7 +96,8 @@ RSpec.shared_context "Ars::Medium API Stubs" do |*media|
       [:request,  :multipart],
       [:request,  :url_encoded],
       [:use,      ::Her::Middleware::DefaultParseJSON],
-      [:adapter,  :rack, rack_channeler]
+      #[:response, :logger, nil, {bodies: true}],
+      [:adapter,  :rack, Ars::RACK_CHANNELER]
     ]
   end
 
