@@ -54,12 +54,13 @@ module Ars
           []
         end
       end
+
     end
   end
 end
 
 RSpec.configure do |config|
-  config.include Ars::Medium::TestMethods
+  config.include Ars::Medium::TestMethods, type: :medium
 end
 
 RSpec.shared_context "Ars::Medium Rack Stubs" do |*media|
