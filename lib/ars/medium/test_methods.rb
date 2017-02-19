@@ -3,29 +3,38 @@ require 'rack/test'
 
 module Ars
   module Medium
+    # @since 0.1.0
     module TestMethods
 
+      # @since 0.1.0
       def self.app
         @app ||= Rack::Builder.parse_file('server.ru').first
       end
 
+      # @since 0.1.0
       def stub_api_for(klass)
         klass.use_api( Link.prime!(Medium::configuration) )
       end
 
+      # @since 0.1.0
       class RackChanneler
+        # @since 0.1.0
         attr_accessor :path_map
 
+        # @since 0.1.0
         class RHash < Hash
+          # @since 0.1.0
           def [](lookup)
             (find {|rkey,_| lookup =~ rkey } || []).last
           end
         end
 
+        # @since 0.1.0
         def initialize
           @path_map = RHash.new
         end
 
+        # @since 0.1.0
         def focus(medium)
           [:collection_path, :resource_path].each do |path|
             path = medium.send(path)
@@ -34,22 +43,27 @@ module Ars
           end
         end
 
+        # @since 0.1.0
         def path_regex(path)
           Regexp.new("^/#{path.gsub(/\:([^\/]+)/, '(?<\1>[^\/]+)')}$")
         end
 
+        # @since 0.1.0
         def call(env)
           [status, headers, body]
         end
 
+        # @since 0.1.0
         def status
           200
         end
 
+        # @since 0.1.0
         def headers
           {}
         end
 
+        # @since 0.1.0
         def body
           []
         end
@@ -59,6 +73,7 @@ module Ars
   end
 end
 
+# @since 0.1.0
 RSpec.configure do |config|
   config.include Ars::Medium::TestMethods, type: :medium
 end

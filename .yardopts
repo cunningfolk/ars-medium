@@ -1,0 +1,6 @@
+--output-dir ./doc/gem
+--markup-provider redcarpet
+--markup markdown
+-
+README.md
+LICENSE

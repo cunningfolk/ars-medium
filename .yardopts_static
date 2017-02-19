@@ -1,0 +1,8 @@
+--output-dir ./doc/test
+--exclude /lib/.*/
+--template static
+--format :md
+--markup-provider redcarpet
+--markup markdown
+-
+doc/static/README.md
