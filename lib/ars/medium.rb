@@ -1,4 +1,5 @@
 require "ars/medium/version"
+require 'her'
 
 # @since 0.1.0
 module Ars

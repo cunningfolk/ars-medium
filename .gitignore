@@ -1,9 +1,9 @@
 /.bundle/
 /.yardoc
-/Gemfile.lock
+/Gemfile*.lock
 /_yardoc/
 /coverage/
-/doc/gem/
+/doc/
 /pkg/
 /spec/reports/
 /tmp/
@@ -12,8 +12,10 @@
 
 # rspec failure tracking
 .rspec_status
+.ruby-gemset
+.ruby-version
 
 # Emacs
 *~
-\#*\#
-.\#*
+# \#*\#
+#.\#*

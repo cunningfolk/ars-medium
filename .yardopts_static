@@ -1,8 +1,8 @@
 --output-dir ./doc/test
---exclude /lib/.*/
 --template static
---format :md
+--format md
 --markup-provider redcarpet
 --markup markdown
+--load templates/plugin.rb
 -
 doc/static/README.md
